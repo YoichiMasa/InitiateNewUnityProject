@@ -1,0 +1,143 @@
+fileFormatVersion: 2
+guid: 1fe9ad9ee1b0de74b9f733954f3be954
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: joint1
+    100002: joint10
+    100004: joint10 1
+    100006: joint17
+    100008: joint2
+    100010: joint2 1
+    100012: joint21
+    100014: joint22
+    100016: joint23
+    100018: joint24
+    100020: joint25
+    100022: joint26
+    100024: joint27
+    100026: joint28
+    100028: joint29
+    100030: joint3
+    100032: joint3 1
+    100034: joint30
+    100036: joint31
+    100038: joint32
+    100040: joint33
+    100042: joint34
+    100044: joint35
+    100046: joint36
+    100048: joint37
+    100050: joint38
+    100052: joint39
+    100054: joint4
+    100056: joint4 1
+    100058: joint40
+    100060: joint5
+    100062: joint5 1
+    100064: joint6
+    100066: joint6 1
+    100068: joint7
+    100070: joint8
+    100072: joint9
+    100074: joint9 1
+    100076: pCube2
+    100078: //RootNode
+    400000: joint1
+    400002: joint10
+    400004: joint10 1
+    400006: joint17
+    400008: joint2
+    400010: joint2 1
+    400012: joint21
+    400014: joint22
+    400016: joint23
+    400018: joint24
+    400020: joint25
+    400022: joint26
+    400024: joint27
+    400026: joint28
+    400028: joint29
+    400030: joint3
+    400032: joint3 1
+    400034: joint30
+    400036: joint31
+    400038: joint32
+    400040: joint33
+    400042: joint34
+    400044: joint35
+    400046: joint36
+    400048: joint37
+    400050: joint38
+    400052: joint39
+    400054: joint4
+    400056: joint4 1
+    400058: joint40
+    400060: joint5
+    400062: joint5 1
+    400064: joint6
+    400066: joint6 1
+    400068: joint7
+    400070: joint8
+    400072: joint9
+    400074: joint9 1
+    400076: pCube2
+    400078: //RootNode
+    2300000: pCube2
+    3300000: pCube2
+    4300000: pCube2
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

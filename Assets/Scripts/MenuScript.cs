@@ -3,17 +3,30 @@ using System.Collections;
 
 public class MenuScript : MonoBehaviour {
 
-	public GameObject startButton;
-	public GameObject optionsButton;
-	public GameObject exitButton;
+//	public TextAsset instructionTextFile;
+//	private string instructions;
+	public GameObject instructionWindow;
+	private bool isWindowActive = false;
 
-	// Use this for initialization
-	void Start () {
-	
+	void Awake()
+	{
+		instructionWindow.SetActive (isWindowActive);
+//		instructions = instructionTextFile.text;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public void giveInstruct()
+	{
+		isWindowActive = !isWindowActive;
+		instructionWindow.SetActive (isWindowActive);
+	}
+
+	public void startNewGame()
+	{
+		Application.LoadLevel (1);
+	}
+
+	public void quitGame()
+	{
+		Application.Quit();
 	}
 }
