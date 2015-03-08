@@ -1912,7 +1912,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c392b1207e3574a8acb28cb3c0310b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instructionTextFile: {fileID: 4900000, guid: 944eb2924e2b04c4187caf1b771444fc, type: 3}
   instructionWindow: {fileID: 706591501}
 --- !u!4 &907475681
 Transform:
