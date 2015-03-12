@@ -90,9 +90,7 @@ public class CharacterLogic : MonoBehaviour {
 
 	public bool IsInLocomotion()
 	{
-		if (stateInfo.nameHash == m_LocomotionID)
-			return false;
-		else
-			return true;
+		return stateInfo.nameHash == m_LocomotionID;
+		return false;
 	}
 }

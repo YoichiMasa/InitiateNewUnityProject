@@ -44,6 +44,8 @@ public class ThirdPersonCamera : MonoBehaviour {
 
 		targetPosition = characterOffset + follow.up * distanceUp - lookDir * distanceAway;
 
+		CompensateForWalls(characterOffset, ref targetPosition);
+
 		SmoothPosition (this.transform.position, targetPosition);
 
 		transform.LookAt(follow);
@@ -52,5 +54,14 @@ public class ThirdPersonCamera : MonoBehaviour {
 	private void SmoothPosition(Vector3 fromPos, Vector3 toPos)
 	{
 		this.transform.position = Vector3.SmoothDamp(fromPos, toPos, ref velocityCamSmooth, camSmoothDampTime);
+	}
+
+	private void CompensateForWalls(Vector3 fromObject, ref Vector3 toTarget)
+	{
+		RaycastHit wallHit = new RaycastHit();
+		if (Physics.Linecast(fromObject, toTarget, out wallHit))
+		{
+			toTarget = new Vector3(wallHit.point.x, toTarget.y, wallHit.point.z);
+		}
 	}
 }

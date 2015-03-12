@@ -14253,6 +14253,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c13f5d747e3ea4791f32f9169f8f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  directionDampTime: .25
+  directionSpeed: 3
+  gamecam: {fileID: 702380569}
+  rotationDegreePerSecond: 120
+  turnSmoothing: 200
   moveSpeed: .75
   movable: {fileID: 1421465362}
 --- !u!1 &1174118947
