@@ -9,18 +9,14 @@ public class Food: Item
 	public int numFood = -1;
 	public int itemHeal = 10;
 	
-	public void ConfigureItem(string name, int ID, string description, int baseWeight, ItemType type, Object sprite, int heal)
+	public void ConfigureFood(string name, int ID, string description, int baseWeight, int height, int width, ItemType type, int heal)
 	{
-		base.ConfigureItem (name, ID, description, baseWeight, type, sprite);
+		base.ConfigureItem (name, ID, description, baseWeight, height, width, type);
 		itemName = name;
 		itemId = ID;
 		itemDesc = description;
 		itemWeight = baseWeight;
-		itemSprite = sprite;
 		itemHeal = heal;
-
 	}
 
-	public override void useItem()
-	{}
 }

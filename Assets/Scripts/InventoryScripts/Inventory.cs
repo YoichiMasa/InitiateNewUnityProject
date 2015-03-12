@@ -5,14 +5,15 @@ using System.Collections.Generic;
 public class Inventory : MonoBehaviour {
 
 	public Camera inventoryCamera;
-	public Vector3 spawn;
 	public bool isVisible = false;
-	public Transform thing;
+	public InventoryManager inventory;
+	public ItemManager itemManager;
 
 	void Awake()
 	{
+		itemManager = ItemManager.getInstance;
+		inventory = InventoryManager.getInstance;
 		inventoryCamera.enabled = isVisible;
-		spawn = thing.position;
 	}
 
 	// Update is called once per frame
@@ -23,13 +24,19 @@ public class Inventory : MonoBehaviour {
 			isVisible = !isVisible;
 			inventoryCamera.enabled = isVisible;
 		}
-	}
+	}	
 
-	public void addPrefab(Item item)
+
+
+	public void addItem(int Id)
 	{
-			Debug.Log ("Item is: " + item);
-			Instantiate (item.itemSprite, spawn, Quaternion.identity);
-
+		Item temp = itemManager.getItem (Id);
+		inventory.addItem (temp);
 	}
 
+
+	public void useItem()
+	{
+
+	}
 }

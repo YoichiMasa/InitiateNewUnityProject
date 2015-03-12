@@ -1,0 +1,92 @@
+[33mcommit 93ccc2381e4f27ef8a15f1d089ef5b6f20d0e04e[m
+Author: YoichiMasa <laurence.jamail@gmail.com>
+Date:   Thu Mar 12 12:40:58 2015 -0400
+
+    Broke it
+
+[33mcommit 72d4a75e569b0ef0bec4296cb5c57ab26f33063b[m
+Author: YoichiMasa <laurence.jamail@gmail.com>
+Date:   Thu Mar 12 01:02:28 2015 -0400
+
+    Implemented Inventory/Testing Save/Load
+
+[33mcommit 0ff84e876c2949bcc5d23549646ec0c1e904fafe[m
+Author: YoichiMasa <laurence.jamail@gmail.com>
+Date:   Tue Mar 10 10:21:06 2015 -0400
+
+    Played with Zenject
+    
+    Decided not to use it, still need to implement a global game controller
+
+[33mcommit ccd66a7cfe292f51b41655925b4e0543edf36dda[m
+Author: YoichiMasa <laurence.jamail@gmail.com>
+Date:   Sat Mar 7 20:13:23 2015 -0500
+
+    Added Inventory Assest
+
+[33mcommit 8f26ff984d85788a276a1d20ba6f8887d05b7b2a[m
+Merge: 1c14f2f 09cf22b
+Author: YoichiMasa <laurence.jamil@gmail.com>
+Date:   Tue Mar 3 14:37:33 2015 -0500
+
+    Merge remote-tracking branch 'origin/master'
+    
+    Conflicts:
+    	Assets/Scenes/Start Screen.unity
+    	ProjectSettings/EditorBuildSettings.asset
+
+[33mcommit 1c14f2f6719b55e18ff5adfdfdad1ec756911912[m
+Author: YoichiMasa <laurence.jamil@gmail.com>
+Date:   Tue Mar 3 14:28:37 2015 -0500
+
+    Added Dan's work
+
+[33mcommit e07b0e530370afc4d786b4a257120434780bd2d8[m
+Author: YoichiMasa <laurence.jamil@gmail.com>
+Date:   Tue Mar 3 14:26:06 2015 -0500
+
+    Forgotten Commit(Discard)
+
+[33mcommit 09cf22b9ee72f847466da62a7f0417f50460d9ba[m
+Author: YoichiMasa <laurence.jamail@gmail.com>
+Date:   Fri Feb 27 13:12:23 2015 -0500
+
+    Combined Projects
+    
+    Added Dan's Level to Build
+
+[33mcommit d965464f9f7d2d89b4fc690ceb070540e8fe0aeb[m
+Author: YoichiMasa <laurence.jamail@gmail.com>
+Date:   Fri Feb 27 13:09:28 2015 -0500
+
+    Added Scenes
+
+[33mcommit bc5851f85790108804b2602386d31e55cf8ac027[m
+Author: YoichiMasa <laurence.jamil@gmail.com>
+Date:   Thu Feb 26 14:13:34 2015 -0500
+
+    Setup MenuScript
+
+[33mcommit db7ed718e3977d3bd8c597dcd8714203aacf495d[m
+Author: YoichiMasa <laurence.jamail@gmail.com>
+Date:   Thu Feb 26 12:55:30 2015 -0500
+
+    Start Menu Layout
+
+[33mcommit b37fd61e080210b66a1b20421c8bed77bea97a07[m
+Author: YoichiMasa <laurence.jamail@gmail.com>
+Date:   Thu Feb 26 00:30:53 2015 -0500
+
+    .gitignore Change
+
+[33mcommit ed0affc52b105318514ad3d6add142611a455193[m
+Author: YoichiMasa <laurence.jamail@gmail.com>
+Date:   Thu Feb 26 00:10:55 2015 -0500
+
+    Start New Unity Project
+
+[33mcommit 04818ad6f731826daafe720f2a8b1a1fc1bba601[m
+Author: YoichiMasa <laurence.jamail@gmail.com>
+Date:   Thu Feb 26 00:10:06 2015 -0500
+
+    :circus_tent: Added .gitattributes & .gitignore files

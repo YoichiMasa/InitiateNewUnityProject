@@ -10,7 +10,6 @@ public class MoveItem : MonoBehaviour {
 	{
 		if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
 		{
-			Debug.Log("Hit");
 			this.rigidbody2D.gravityScale = 0;
 			Vector3 moveVector = new Vector3(moveSpeed * Input.GetAxis("Horizontal") * Time.deltaTime, moveSpeed * Input.GetAxis("Vertical") * Time.deltaTime, 0);
 			Vector3 desiredPosition = transform.position + moveVector;

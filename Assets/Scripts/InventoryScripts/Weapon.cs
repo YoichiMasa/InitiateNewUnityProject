@@ -8,19 +8,15 @@ public class Weapon: Item
 	public int wpnDamage = 10;
 	public int wpnDurability = 10;
 
-	public void ConfigureItem(string name, int ID, string description, int baseWeight, ItemType type, Object sprite,
-	                            int damage,	int durability)
+	public void ConfigureWeapon(string name, int ID, string description, int baseWeight, int height, int width, ItemType type, int damage,
+	              	int durability)
 	{
-		base.ConfigureItem (name, ID, description, baseWeight, type, sprite);
+		base.ConfigureItem (name, ID, description, baseWeight, height, width, type);
 		itemName = name;
 		itemId = ID;
 		itemDesc = description;
 		itemWeight = baseWeight;
-		itemSprite = sprite;
 		wpnDamage = damage;
 		wpnDurability = durability;
 	}
-
-	public override void useItem()
-	{}
 }
