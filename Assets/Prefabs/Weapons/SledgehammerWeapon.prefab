@@ -10,6 +10,8 @@ GameObject:
   - 4: {fileID: 408264}
   - 33: {fileID: 3308264}
   - 23: {fileID: 2308264}
+  - 135: {fileID: 13545168}
+  - 114: {fileID: 11445168}
   m_Layer: 0
   m_Name: SledgehammerWeapon
   m_TagString: Untagged
@@ -56,6 +58,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 108264}
   m_Mesh: {fileID: 4300000, guid: 734a6c79512cb3241b27dcf3d863d7a0, type: 3}
+--- !u!114 &11445168
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43d8d870c62f8134dab323f538aea80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemID: 0
+  range: 0
+  canPickUp: 0
+  item: {fileID: 0}
+--- !u!135 &13545168
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108264}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .0270007588
+  m_Center: {x: 0, y: -1.16415322e-10, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
