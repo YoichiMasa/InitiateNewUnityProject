@@ -43,6 +43,8 @@ GameObject:
   - 4: {fileID: 458262}
   - 33: {fileID: 3358258}
   - 23: {fileID: 2358258}
+  - 135: {fileID: 13537564}
+  - 114: {fileID: 11437564}
   m_Layer: 0
   m_Name: PlasmaCutterWeapon
   m_TagString: Untagged
@@ -150,6 +152,33 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11437564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43d8d870c62f8134dab323f538aea80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemID: 0
+  range: 0
+  canPickUp: 0
+  item: {fileID: 0}
+--- !u!135 &13537564
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158262}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .0930688679
+  m_Center: {x: 0, y: 0, z: -3.7252903e-09}
 --- !u!198 &19858258
 ParticleSystem:
   m_ObjectHideFlags: 1

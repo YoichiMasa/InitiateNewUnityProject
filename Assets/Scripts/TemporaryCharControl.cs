@@ -27,9 +27,12 @@ public class TemporaryCharControl : MonoBehaviour {
 	private Vector3 input;
 	public Rigidbody movable;
 
+	public Camera camera;
+	public bool visible;
+
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
@@ -37,20 +40,24 @@ public class TemporaryCharControl : MonoBehaviour {
 		//current
 		//input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 		//movable.AddForce(input*moveSpeed);
-
-		//experimental
-		h = Input.GetAxis("Horizontal");
-		v = Input.GetAxis("Vertical");
-
-		Vector3 moveDirection = StickToWorldspace(this.transform, gamecam.transform, ref directionSpeed, ref speed);
-
-		movable.AddForce (moveDirection * moveSpeed);
-
-		if(h != 0f || v != 0f)
-		{
-			Rotating(moveDirection);
+		if (camera.enabled == true) {
+			visible = true;
+		} else {
+			visible = false;
 		}
+		//experimental
+		if (visible == false) {
+			h = Input.GetAxis ("Horizontal");
+			v = Input.GetAxis ("Vertical");
 
+			Vector3 moveDirection = StickToWorldspace (this.transform, gamecam.transform, ref directionSpeed, ref speed);
+
+			movable.AddForce (moveDirection * moveSpeed);
+
+			if (h != 0f || v != 0f) {
+				Rotating (moveDirection);
+			}
+		}
 		//if (rigidbody.velocity.magnitude < moveSpeed) 
 		//{
 		//	rigidbody.AddForce (moveDirection * moveSpeed);

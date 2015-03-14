@@ -10,6 +10,8 @@ GameObject:
   - 4: {fileID: 472736}
   - 33: {fileID: 3372736}
   - 23: {fileID: 2372736}
+  - 135: {fileID: 13547620}
+  - 114: {fileID: 11447620}
   m_Layer: 0
   m_Name: WrenchWeapon
   m_TagString: Untagged
@@ -56,6 +58,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 172736}
   m_Mesh: {fileID: 4300000, guid: 64f77ff268ea0b84ca374fb4d6688093, type: 3}
+--- !u!114 &11447620
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43d8d870c62f8134dab323f538aea80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemID: 0
+  range: 0
+  canPickUp: 0
+  item: {fileID: 0}
+--- !u!135 &13547620
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 172736}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .124559306
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
