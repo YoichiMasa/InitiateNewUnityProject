@@ -8,7 +8,7 @@ public class Weapon: Item
 	public int wpnDamage = 10;
 	public int wpnDurability = 10;
 
-	public void ConfigureItem(string name, int ID, string description, int baseWeight, ItemType type, Object sprite,
+	public void ConfigureItem(string name, int ID, string description, int baseWeight, ItemType type, GameObject sprite,
 	                            int damage,	int durability)
 	{
 		base.ConfigureItem (name, ID, description, baseWeight, type, sprite);
