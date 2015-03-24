@@ -27,7 +27,7 @@ public class TemporaryCharControl : MonoBehaviour {
 	private Vector3 input;
 	public Rigidbody movable;
 
-	public Camera camera;
+	public Camera inventCam;
 	public bool visible;
 
 	// Use this for initialization
@@ -40,7 +40,7 @@ public class TemporaryCharControl : MonoBehaviour {
 		//current
 		//input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 		//movable.AddForce(input*moveSpeed);
-		if (camera.enabled == true) {
+		if (inventCam.enabled == true) {
 			visible = true;
 		} else {
 			visible = false;

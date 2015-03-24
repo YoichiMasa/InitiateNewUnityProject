@@ -9,7 +9,7 @@ public class Food: Item
 	public int numFood = -1;
 	public int itemHeal = 10;
 	
-	public void ConfigureItem(string name, int ID, string description, int baseWeight, ItemType type, Object sprite, int heal)
+	public void ConfigureItem(string name, int ID, string description, int baseWeight, ItemType type, GameObject sprite, int heal)
 	{
 		base.ConfigureItem (name, ID, description, baseWeight, type, sprite);
 		itemName = name;

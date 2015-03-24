@@ -9,9 +9,11 @@ public class PickUp: MonoBehaviour {
 	private SphereCollider trigger;
 	public bool canPickUp;
 	public Item item;
+	public InventoryManager invent;
 
 	void Awake()
 	{
+		invent = GameObject.FindGameObjectWithTag ("GameController").GetComponent<InventoryManager> ();
 		trigger = GetComponent<SphereCollider> ();
 		trigger.isTrigger = true;
 		trigger.radius = range;
@@ -39,7 +41,7 @@ public class PickUp: MonoBehaviour {
 		{
 			if (Input.GetKeyDown (KeyCode.F)) 
 			{
-				InventoryManager.addItem (item);
+				invent.addItem (item);
 				Destroy (gameObject);
 			}
 		}

@@ -3,12 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class InventoryManager : MonoBehaviour {
-	public static IList<Item> inventory;
-	public static InventoryManager invent;
-	public static Inventory spawn;
+	public List<Item> inventory;
+	public  InventoryManager invent;
+	public  Inventory spawn;
+	public  MoveItem move;
 
-	public static int invWeight = 0;
-	public static int MAX_WEIGHT = 25;
+	public  int inventIndex = 0;
+	public  Item selectedItem;
+
+	public  int invWeight = 0;
+	public  int MAX_WEIGHT = 25;
+
+	public Camera inventCam;
+	public bool visible;
+	public  bool select = false;
 
 	void Awake()
 	{
@@ -28,8 +36,47 @@ public class InventoryManager : MonoBehaviour {
 		}
 	}
 
+	void Update()
+	{
+		if (inventCam.enabled == true) {
+			visible = true;
+		} else {
+			visible = false;
+		}
 
-	public static void addItem(Item item)
+		if(visible == true)
+		{
+			if(inventory.Count > 0)
+			{
+				if(Input.GetKeyDown(KeyCode.Space))
+				{
+					selectItem();
+				}
+				Debug.Log (inventIndex);
+
+			}
+		}
+		else
+		{
+			if(inventory.Count > 0 && selectedItem != null)
+			{
+				selectedItem.isSelected = select;
+			}
+		}
+
+
+		if(Input.GetKeyDown(KeyCode.KeypadEnter)&& inventory.Count > 0)
+		{
+
+			inventory.RemoveAt(inventIndex);
+			Destroy(selectedItem.itemSprite);
+			selectedItem = null;
+			selectItem ();
+			Debug.Log (inventory.Count);
+		}
+	}
+
+	public  void addItem(Item item)
 	{
 		Item temp = (Item)ScriptableObject.CreateInstance<Item> ();
 		temp = item;
@@ -38,20 +85,18 @@ public class InventoryManager : MonoBehaviour {
 		{
 			if (temp.itemType == Item.ItemType.Weapon) 
 			{
-				temp = temp as Weapon;
-				inventory.Add(item);
-				spawn.addPrefab(item);
-				//invWeight = invWeight+temp.itemWeight;
+				temp.itemSprite = spawn.addPrefab(temp);
+				inventory.Add(temp);
+				invWeight = invWeight+temp.itemWeight;
 			}
 			else if (temp.itemType == Item.ItemType.Food) 
 			{
-				temp = temp as Food;
 				inventory.Add(temp);
 				invWeight = invWeight+temp.itemWeight;
 			}
 			else if (temp.itemType == Item.ItemType.KeyItem) 
 			{
-				temp = temp as KeyItem;
+				temp.itemSprite = spawn.addPrefab(temp);
 				inventory.Add(temp);
 				invWeight = invWeight+temp.itemWeight;
 			}
@@ -63,11 +108,11 @@ public class InventoryManager : MonoBehaviour {
 
 	}
 
-	public static void removeItem(Item currItem)
+	public  void removeItem(Item currItem)
 	{
 	}
 
-	public static bool checkWeight(Item newItem)
+	public  bool checkWeight(Item newItem)
 	{
 		Item temp = newItem;
 		bool full = false;
@@ -79,6 +124,34 @@ public class InventoryManager : MonoBehaviour {
 		else
 		{
 			return full;
+		}
+	}
+
+	public  void selectItem()
+	{
+		if(selectedItem != null /*&& selectedItem.itemSprite != null*/)
+		{
+			Debug.Log ("Got in");
+			selectedItem.isSelected = select;
+			selectedItem.itemSprite.GetComponent<MoveItem>().swapSprite();
+
+		}
+		if ((inventIndex+1) < inventory.Count) 
+		{
+			//selectedItem.isSelected = select;
+			inventIndex++;
+			selectedItem = inventory[inventIndex];
+			selectedItem.itemSprite.GetComponent<MoveItem>().swapSprite();
+			Debug.Log (selectedItem.itemName+" "+inventIndex);
+			selectedItem.isSelected = !select;
+
+		}
+		else
+		{
+			inventIndex = 0;
+			selectedItem = inventory[inventIndex];
+			selectedItem.itemSprite.GetComponent<MoveItem>().swapSprite();
+			selectedItem.isSelected = !select;
 		}
 	}
 }

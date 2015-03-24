@@ -7,7 +7,7 @@ using System.IO;
 
 public class GameController : MonoBehaviour {
 	public static GameController control;
-
+	public InventoryManager invent;
 
 	void Awake () 
 	{
@@ -33,9 +33,9 @@ public class GameController : MonoBehaviour {
 
 		SaveData info = new SaveData ();
 		info.inventory = new List<Item> ();
-		for(int i = 0; i < InventoryManager.inventory.Count; i++)
+		for(int i = 0; i < invent.inventory.Count; i++)
 		{
-			info.inventory.Add(InventoryManager.inventory[i]);
+			info.inventory.Add(invent.inventory[i]);
 		}
 
 		saver.Serialize (file, info);
@@ -52,7 +52,7 @@ public class GameController : MonoBehaviour {
 			file.Close ();
 			for(int i = 0; i < info.inventory.Count; i++)
 			{
-				InventoryManager.inventory.Add (info.inventory[i]);
+				invent.inventory.Add (info.inventory[i]);
 			}
 		}
 	}
