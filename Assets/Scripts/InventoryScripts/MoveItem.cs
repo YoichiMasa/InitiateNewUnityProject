@@ -9,6 +9,7 @@ public class MoveItem : MonoBehaviour {
 	public Sprite tempSprite;
 	private Sprite holdSprite;
 	public Rigidbody2D item;
+	public GameObject dropItem;
 	public InventoryManager invent;
 
 	void Awake ()
