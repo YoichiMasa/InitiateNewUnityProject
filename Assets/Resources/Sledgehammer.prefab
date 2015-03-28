@@ -99,6 +99,8 @@ MonoBehaviour:
   currSprite: {fileID: 21300000, guid: 7bc4ec1f78d115f4b94e213280cabc62, type: 3}
   tempSprite: {fileID: 21300000, guid: 1d0348d4a49473849ba0c51344499bb5, type: 3}
   item: {fileID: 5082118}
+  dropItem: {fileID: 108264, guid: 78fe2531aef96e549ab064902f8268f0, type: 2}
+  invent: {fileID: 0}
 --- !u!212 &21282118
 SpriteRenderer:
   m_ObjectHideFlags: 1

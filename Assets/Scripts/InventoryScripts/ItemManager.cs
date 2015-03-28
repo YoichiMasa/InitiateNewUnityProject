@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 public class ItemManager: MonoBehaviour{
 	public static IList<Item> itemDatabase;
 	public static ItemManager im;
+	public ItemReader reader;
 	void Awake () 
 	{
 		if (im == null) 
@@ -20,14 +22,8 @@ public class ItemManager: MonoBehaviour{
 				Destroy(gameObject);
 			}
 		}
-		Weapon newItem = (Weapon)ScriptableObject.CreateInstance<Weapon> ();
-		//GameObject go = Resources.Load ("Crowbar") as GameObject;
-		newItem.ConfigureItem ("Crowbar", 100, "It's a Box", 1, Item.ItemType.Weapon, null, 10, 10);
-		KeyItem newThing = (KeyItem)ScriptableObject.CreateInstance<KeyItem> ();
-		//GameObject go = Resources.Load ("Crowbar") as GameObject;
-		newThing.ConfigureItem ("Sledgehammer", 101, "It's a Box", 1, Item.ItemType.KeyItem, null);
-		itemDatabase.Add (newItem);
-		itemDatabase.Add (newThing);
+		reader = new ItemReader ();
+		itemDatabase = reader.read ();
 	}
 
 	public static Item getItem(int Id)
@@ -63,4 +59,45 @@ public class ItemManager: MonoBehaviour{
 	}
 
 			
+}
+
+public class ItemReader
+{
+	public ItemReader()
+	{
+		
+	}
+	public IList<Item> read()
+	{
+		TextAsset csvFile = (TextAsset)Resources.Load("ItemList");
+		IList<Item> items = new List<Item> ();
+		string readText = csvFile.text;
+		string[] readLine = readText.Split ("\n"[0]);
+		for (int i = 0; i < readLine.Length-1; i++) 
+		{
+			string[] line = readLine [i].Split ("," [0]);
+
+			int ID = int.Parse (line[1]);
+			if(ID >= 100 && ID < 200)
+			{
+				Weapon newWpn = (Weapon)ScriptableObject.CreateInstance<Weapon>();
+				newWpn.ConfigureItem(line[0], ID, line[2], int.Parse(line[3]), Item.ItemType.Weapon, null, int.Parse (line[4]), int.Parse (line[5]));
+				items.Add(newWpn);
+			}
+			else if(ID >= 200 && ID < 300)
+			{
+				Food newFood = (Food)ScriptableObject.CreateInstance<Food>();
+				newFood.ConfigureItem(line[0], ID, line[2], int.Parse(line[3]), Item.ItemType.Weapon, null, int.Parse (line[4]));
+				items.Add(newFood);
+			}
+			else if(ID >= 300)
+			{
+				KeyItem newKey = (KeyItem)ScriptableObject.CreateInstance<KeyItem>();
+				newKey.ConfigureItem(line[0], ID, line[2], int.Parse(line[3]), Item.ItemType.Weapon, null);
+				items.Add(newKey);
+			}
+		}
+		return items;
+	}
+	
 }

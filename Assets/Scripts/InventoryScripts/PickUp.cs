@@ -39,7 +39,7 @@ public class PickUp: MonoBehaviour {
 	{
 		if (canPickUp) 
 		{
-			if (Input.GetKeyDown (KeyCode.F)) 
+			if (Input.GetKeyDown (KeyCode.F) && !invent.checkWeight(item)) 
 			{
 				invent.addItem (item);
 				Destroy (gameObject);

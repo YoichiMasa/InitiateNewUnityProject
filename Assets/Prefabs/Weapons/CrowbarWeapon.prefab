@@ -69,10 +69,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43d8d870c62f8134dab323f538aea80c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemID: 100
+  itemID: 102
   range: 1
   canPickUp: 0
   item: {fileID: 0}
+  invent: {fileID: 0}
 --- !u!135 &13591298
 SphereCollider:
   m_ObjectHideFlags: 1
