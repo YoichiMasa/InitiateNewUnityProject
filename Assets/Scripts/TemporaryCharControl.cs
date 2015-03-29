@@ -15,49 +15,94 @@ public class TemporaryCharControl : MonoBehaviour {
 	[SerializeField]
 	private float turnSmoothing = 200f;
 
+	public Camera invent;
+
 	private float speed = 0.0f;
 	private float direction = 0f;
 	private float h = 0.0f;
 	private float v = 0.0f;
 
+	private bool grounded = true;
+	private bool crouch = false;
+	private bool sprint = false;
+
 
 	//normal elements
 	public float moveSpeed = 15f;
+	public float jumpHeight = 1;
 
 	private Vector3 input;
 	public Rigidbody movable;
-
-	public Camera inventCam;
-	public bool visible;
+	private CapsuleCollider ratboyCollider;
 
 	// Use this for initialization
-	void Start () {
-
+	void Start () 
+	{
+		ratboyCollider = transform.GetComponentInChildren<CapsuleCollider>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		//current
-		//input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-		//movable.AddForce(input*moveSpeed);
-		if (inventCam.enabled == true) {
-			visible = true;
-		} else {
-			visible = false;
-		}
-		//experimental
-		if (visible == false) {
+	void FixedUpdate()
+	{
+		if (invent.enabled == false) 
+		{
+			//jump
+			if (Input.GetKeyDown (KeyCode.Space) && grounded) {
+				Jump ();
+			}
+			
+			//jump height control
+			if (Input.GetKeyUp (KeyCode.Space)) {
+				if (movable.velocity.y > 0) {
+					movable.velocity = new Vector3 (movable.velocity.x, movable.velocity.y / 2, movable.velocity.z);
+				}
+			}
+			
+			//Check if grounded
+			IsGrounded ();
+			
+			if (Input.GetKeyDown (KeyCode.Z)) {
+				sprint = true;
+				Sprint ();
+			}
+			
+			if (Input.GetKeyUp (KeyCode.Z)) {
+				sprint = false;
+				Sprint ();
+			}
+			
+			if (Input.GetKeyDown (KeyCode.C)) {
+				crouch = true;
+				Crouch ();
+			}
+			
+			if (Input.GetKeyUp (KeyCode.C)) {
+				crouch = false;
+				Crouch ();
+			}
+			
+			
+			
+			
+			//current
+			//input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+			//movable.AddForce(input*moveSpeed);
+			
+			//experimental
 			h = Input.GetAxis ("Horizontal");
 			v = Input.GetAxis ("Vertical");
-
+			
 			Vector3 moveDirection = StickToWorldspace (this.transform, gamecam.transform, ref directionSpeed, ref speed);
-
+			
 			movable.AddForce (moveDirection * moveSpeed);
-
+			
+			
+			//model rotation
 			if (h != 0f || v != 0f) {
 				Rotating (moveDirection);
 			}
 		}
+
 		//if (rigidbody.velocity.magnitude < moveSpeed) 
 		//{
 		//	rigidbody.AddForce (moveDirection * moveSpeed);
@@ -111,5 +156,60 @@ public class TemporaryCharControl : MonoBehaviour {
 		Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
 		Quaternion newRotation = Quaternion.Lerp(movable.rotation, targetRotation, turnSmoothing * Time.deltaTime);
 		movable.MoveRotation(newRotation);
+	}
+
+	//jump
+	void Jump()
+	{
+		movable.AddForce (0, jumpHeight, 0);
+	}
+
+	//check if on the ground for jump
+	public bool IsGrounded() 
+	{
+		RaycastHit hit;
+		if(Physics.Raycast(transform.position, Vector3.down, out hit, 1)) {
+			//Debug.Log("Hitting: " + hit.transform.gameObject.tag);
+			Debug.DrawRay(transform.position, Vector3.down);
+			if(hit.transform.gameObject) 
+			{
+				grounded = true;
+			}
+			else
+			{
+				grounded = false;
+			}
+		}
+		return grounded;
+	}
+
+	void Crouch()
+	{
+		//crouch
+		if (crouch)
+		{
+			ratboyCollider.height = 0.1f;
+			ratboyCollider.center = new Vector3(ratboyCollider.center.x, -0.03f, ratboyCollider.center.z);
+			moveSpeed = 6f;
+		}
+		else
+		{
+			ratboyCollider.height = 0.17f;
+			ratboyCollider.center = new Vector3(ratboyCollider.center.x, 0, ratboyCollider.center.z);
+			moveSpeed = 12f;
+		}
+	}
+
+	void Sprint()
+	{
+		//Sprint
+		if (sprint)
+		{
+			moveSpeed = 18f;
+		}
+		else
+		{
+			moveSpeed = 12f;
+		}
 	}
 }
