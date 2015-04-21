@@ -11,12 +11,14 @@ public class MoveItem : MonoBehaviour {
 	public Rigidbody2D item;
 	public GameObject dropItem;
 	public InventoryManager invent;
+	public Transform itemDropPoint;
 
 	void Awake ()
 	{
 		invent = GameObject.FindGameObjectWithTag ("GameController").GetComponent<InventoryManager> ();
 
 		loader = this.GetComponent<SpriteRenderer> ();
+		itemDropPoint = GameObject.Find ("DropItemPoint").GetComponent<Transform> ();
 	}
 	// Update is called once per frame
 	void Update () 
@@ -28,13 +30,13 @@ public class MoveItem : MonoBehaviour {
 				//loader.sprite = tempSprite;
 				if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
 				{
-					Debug.Log("Hit");
 					item.gravityScale = 0;
 					Vector3 moveVector = new Vector3(moveSpeed * Input.GetAxis("Horizontal") * Time.deltaTime, moveSpeed * Input.GetAxis("Vertical") * Time.deltaTime, 0);
-					Vector3 desiredPosition = transform.position + moveVector;
-					if (desiredPosition.x > -2.3f &&desiredPosition.x < 2.5f)
+					Vector3 desiredPosition = invent.selectedItem.itemSprite.transform.position + moveVector;
+					Debug.Log (desiredPosition);
+					if (desiredPosition.x > 38.5f && desiredPosition.x < 43.1f && desiredPosition.y > -2.6f)
 					{
-						transform.position = desiredPosition;
+						invent.selectedItem.itemSprite.transform.position = desiredPosition;
 					}
 				}
 				else

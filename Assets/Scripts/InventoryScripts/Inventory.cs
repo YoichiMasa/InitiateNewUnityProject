@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour {
 	public bool isVisible = false;
 	public Transform thing;
 	public InventoryManager invent;
-	public Inventory curr;
+	public static Inventory curr;
 	public List<Item> view;
 
 	void Awake()
@@ -37,6 +37,18 @@ public class Inventory : MonoBehaviour {
 		{
 			isVisible = !isVisible;
 			inventoryCamera.enabled = isVisible;
+			HUDController.instance.BarBacking.enabled = isVisible;
+			HUDController.instance.weightText.enabled = isVisible;
+
+			if(isVisible)
+			{
+				HUDController.instance.HandleWeight();
+				AudioController.instance.PlayItemSound(0);
+			}
+			if(!isVisible)
+			{
+				AudioController.instance.PlayItemSound(1);
+			}
 		}
 	}
 

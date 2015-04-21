@@ -13,7 +13,7 @@ GameObject:
   - 114: {fileID: 11433748}
   m_Layer: 0
   m_Name: GameContoller
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,6 +41,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 686c46353c9c39b479b0cdd9dd4f1f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invent: {fileID: 11433744}
+  spawn: {fileID: 11430974, guid: 45b00472d8a8b2f47a9608db0d681feb, type: 2}
+  move: {fileID: 0}
+  inventIndex: 0
+  selectedItem: {fileID: 0}
+  invWeight: 0
+  MAX_WEIGHT: 25
+  inventCam: {fileID: 2002964, guid: 45b00472d8a8b2f47a9608db0d681feb, type: 2}
+  visible: 0
+  select: 0
+  itemDropPoint: {fileID: 492344, guid: 7e6b5df033d340c46929d33370faab99, type: 2}
 --- !u!114 &11433746
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -63,6 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e9d48994f11014ba2b21d58cb74407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invent: {fileID: 11433744}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

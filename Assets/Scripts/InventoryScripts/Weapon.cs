@@ -23,4 +23,14 @@ public class Weapon: Item
 
 	public override void useItem()
 	{}
+
+	public override GameObject equipItem(GameObject equipPoint, Item equipItem)
+	{
+		GameObject dropCurrItem = equipItem.itemSprite.GetComponent<MoveItem> ().dropItem;
+		Quaternion corrRotation = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().localRotation;
+		GameObject equip = (GameObject)Instantiate (dropCurrItem, equipPoint.transform.position, Quaternion.identity);
+		equip.transform.localRotation = corrRotation;
+		equip.transform.parent = equipPoint.transform;
+		return equip;
+	}
 }

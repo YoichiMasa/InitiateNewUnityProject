@@ -3,20 +3,16 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour {
 
-	public Camera[] cameras;
+	public GameObject[] cameras;
 	public Camera currentCamera;
 	
 	
 	void Start () {
-		cameras[0].camera.active = true;
+		cameras[0].camera.enabled = true;
 		for(int i=1; i < cameras.Length; i++)
 		{
-			cameras[i].camera.active = false;
+			cameras[i].camera.enabled = false;
+			cameras[i].GetComponent<AudioListener>().enabled = false;
 		}
-	}
-	
-	void Update () {
-		
-		
 	}
 }

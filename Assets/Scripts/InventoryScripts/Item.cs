@@ -29,6 +29,16 @@ public class Item : ScriptableObject {
 	}
 
 	public virtual void useItem(){}
+
+	public virtual float getValue()
+	{
+		return 0;
+	}
+
+	public virtual GameObject equipItem(GameObject equipPoint, Item equipItem)
+	{
+		return null;
+	}
 }
 
 

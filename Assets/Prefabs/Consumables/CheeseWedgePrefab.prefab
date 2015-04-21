@@ -10,6 +10,8 @@ GameObject:
   - 4: {fileID: 493036}
   - 33: {fileID: 3393036}
   - 23: {fileID: 2393036}
+  - 135: {fileID: 13566734}
+  - 114: {fileID: 11466734}
   m_Layer: 0
   m_Name: CheeseWedgePrefab
   m_TagString: Untagged
@@ -56,6 +58,34 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193036}
   m_Mesh: {fileID: 4300000, guid: 7ef6c9d529c6d0247af39b3b22d0d48d, type: 3}
+--- !u!114 &11466734
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43d8d870c62f8134dab323f538aea80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemID: 200
+  range: 1
+  canPickUp: 0
+  item: {fileID: 0}
+  invent: {fileID: 0}
+--- !u!135 &13566734
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193036}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .0133585548
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

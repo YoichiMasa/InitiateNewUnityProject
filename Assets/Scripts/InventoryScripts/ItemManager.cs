@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 
 public class ItemManager: MonoBehaviour{
-	public static IList<Item> itemDatabase;
+	public static List<Item> itemDatabase;
 	public static ItemManager im;
 	public ItemReader reader;
 	void Awake () 
@@ -67,10 +67,10 @@ public class ItemReader
 	{
 		
 	}
-	public IList<Item> read()
+	public List<Item> read()
 	{
 		TextAsset csvFile = (TextAsset)Resources.Load("ItemList");
-		IList<Item> items = new List<Item> ();
+		List<Item> items = new List<Item> ();
 		string readText = csvFile.text;
 		string[] readLine = readText.Split ("\n"[0]);
 		for (int i = 0; i < readLine.Length-1; i++) 
@@ -87,13 +87,13 @@ public class ItemReader
 			else if(ID >= 200 && ID < 300)
 			{
 				Food newFood = (Food)ScriptableObject.CreateInstance<Food>();
-				newFood.ConfigureItem(line[0], ID, line[2], int.Parse(line[3]), Item.ItemType.Weapon, null, int.Parse (line[4]));
+				newFood.ConfigureItem(line[0], ID, line[2], int.Parse(line[3]), Item.ItemType.Food, null, float.Parse (line[4]));
 				items.Add(newFood);
 			}
 			else if(ID >= 300)
 			{
 				KeyItem newKey = (KeyItem)ScriptableObject.CreateInstance<KeyItem>();
-				newKey.ConfigureItem(line[0], ID, line[2], int.Parse(line[3]), Item.ItemType.Weapon, null);
+				newKey.ConfigureItem(line[0], ID, line[2], int.Parse(line[3]), Item.ItemType.KeyItem, null);
 				items.Add(newKey);
 			}
 		}

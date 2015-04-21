@@ -3,25 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class InventoryManager : MonoBehaviour {
-	public 	IList<Item> inventory;
+	public 	List<Item> inventory;
 	public  InventoryManager invent;
 	public  Inventory spawn;
 	public  MoveItem move;
+	public GameObject equipPoint;
+	private GameObject equipPhysItem = null;
 
 	public  int inventIndex = 0;
-	public  Item selectedItem;
+	public  Item selectedItem = null;
+	public Item equippedItem = null;
 
-	public  int invWeight = 0;
-	public  int MAX_WEIGHT = 25;
+	public  float invWeight = 0;
+	public  float MAX_WEIGHT = 30f;
 
 	public Camera inventCam;
 	public bool visible;
 	public  bool select = false;
-	public Transform itemDropPoint;
 
 	void Awake()
 	{
-		spawn = GameObject.FindGameObjectWithTag ("Inventory").GetComponent<Inventory> ();
+		inventCam = GameObject.Find("Inventory").GetComponent<Camera> ();
+		equipPoint = GameObject.Find ("EquipPoint");
 		if (invent == null) 
 		{
 			DontDestroyOnLoad(gameObject);
@@ -52,6 +55,7 @@ public class InventoryManager : MonoBehaviour {
 				if(Input.GetKeyDown(KeyCode.Space))
 				{
 					selectItem();
+					AudioController.instance.PlayItemSound(4);
 				}
 				
 				if(Input.GetKeyDown(KeyCode.KeypadEnter)&& selectedItem != null)
@@ -63,12 +67,33 @@ public class InventoryManager : MonoBehaviour {
 				{
 					dropItem();
 				}
+				if(Input.GetKeyDown (KeyCode.V) && selectedItem != null)
+				{
+					if(selectedItem.itemType == Item.ItemType.Food)
+					{	
+						selectedItem.useItem();
+						float leftoverHeal = selectedItem.getValue();
+						if(leftoverHeal == 0)
+						{
+							removeItem();
+						}
+					}
+					if(selectedItem.itemType == Item.ItemType.Weapon)
+					{
+						if(equipPhysItem != null)
+						{
+							Destroy (equipPhysItem);
+						}
+						equipPhysItem = selectedItem.equipItem(equipPoint, selectedItem);
+						equippedItem = selectedItem;
+					}
+				}
 
 			}
 		}
 		else
 		{
-			if(inventory.Count > 0 && selectedItem != null)
+			if(/*inventory.Count > 0 &&*/ selectedItem != null)
 			{
 				selectedItem.isSelected = select;
 			}
@@ -88,6 +113,7 @@ public class InventoryManager : MonoBehaviour {
 		}
 		else if (temp.itemType == Item.ItemType.Food) 
 		{
+			temp.itemSprite = spawn.addPrefab(temp);
 			inventory.Add(temp);
 			invWeight = invWeight+temp.itemWeight;
 		}
@@ -97,7 +123,7 @@ public class InventoryManager : MonoBehaviour {
 			inventory.Add(temp);
 			invWeight = invWeight+temp.itemWeight;
 		}
-
+		HUDController.instance.Message ("Obtained: " + temp.itemName + "", 4);
 	}
 
 	public  void removeItem()
@@ -107,17 +133,21 @@ public class InventoryManager : MonoBehaviour {
 		Destroy(selectedItem.itemSprite);
 		selectedItem = null;
 		selectItem ();
+		HUDController.instance.HandleWeight ();
 	}
 
 	public void dropItem()
 	{
-		GameObject dropItem = selectedItem.itemSprite.GetComponent<MoveItem> ().dropItem;
+		GameObject dropCurrItem = selectedItem.itemSprite.GetComponent<MoveItem> ().dropItem;
+		Transform itemDropPoint = selectedItem.itemSprite.GetComponent<MoveItem> ().itemDropPoint;
 		inventory.RemoveAt(inventIndex);
 		invWeight = invWeight-selectedItem.itemWeight;
-		Instantiate (dropItem, itemDropPoint.position, Quaternion.identity);
+		Instantiate (dropCurrItem, itemDropPoint.position, Quaternion.identity);
 		Destroy(selectedItem.itemSprite);
 		selectedItem = null;
 		selectItem ();
+		HUDController.instance.HandleWeight ();
+		AudioController.instance.PlayItemSound (2);
 	}
 
 	public  bool checkWeight(Item newItem)
@@ -127,6 +157,7 @@ public class InventoryManager : MonoBehaviour {
 		if (temp.itemWeight + invWeight > MAX_WEIGHT) 
 		{
 			full = true;
+			HUDController.instance.Message("Bag is too heavy to pick up.", 4);
 			return full;
 		}
 		else

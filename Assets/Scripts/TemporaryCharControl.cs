@@ -9,13 +9,11 @@ public class TemporaryCharControl : MonoBehaviour {
 	[SerializeField]
 	private float directionSpeed = 3.0f;
 	[SerializeField]
-	private ThirdPersonCamera gamecam;
+	private CameraController gamecam;
 	[SerializeField]
 	private float rotationDegreePerSecond = 120f;
 	[SerializeField]
 	private float turnSmoothing = 200f;
-
-	public Camera invent;
 
 	private float speed = 0.0f;
 	private float direction = 0f;
@@ -35,75 +33,98 @@ public class TemporaryCharControl : MonoBehaviour {
 	public Rigidbody movable;
 	private CapsuleCollider ratboyCollider;
 
+	public Camera invent;
+
 	// Use this for initialization
 	void Start () 
 	{
 		ratboyCollider = transform.GetComponentInChildren<CapsuleCollider>();
+		invent = GameObject.Find("Inventory").GetComponent<Camera> ();
+
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate()
 	{
-		if (invent.enabled == false) 
+		if(invent.enabled == false)
 		{
 			//jump
-			if (Input.GetKeyDown (KeyCode.Space) && grounded) {
-				Jump ();
+			if (Input.GetKeyDown (KeyCode.Space) && grounded) 
+			{
+			Jump();
 			}
-			
+		
 			//jump height control
-			if (Input.GetKeyUp (KeyCode.Space)) {
-				if (movable.velocity.y > 0) {
+			if (Input.GetKeyUp (KeyCode.Space)) 
+			{
+				if (movable.velocity.y > 0) 
+				{
 					movable.velocity = new Vector3 (movable.velocity.x, movable.velocity.y / 2, movable.velocity.z);
 				}
 			}
-			
+
 			//Check if grounded
-			IsGrounded ();
-			
-			if (Input.GetKeyDown (KeyCode.Z)) {
+			IsGrounded();
+
+			if(Input.GetKeyDown (KeyCode.Z))
+			{
 				sprint = true;
-				Sprint ();
+				Sprint();
 			}
-			
-			if (Input.GetKeyUp (KeyCode.Z)) {
+		
+			if(Input.GetKeyUp (KeyCode.Z))
+			{
 				sprint = false;
-				Sprint ();
+				Sprint();
 			}
-			
-			if (Input.GetKeyDown (KeyCode.C)) {
+
+			if(Input.GetKeyDown (KeyCode.C))
+			{
 				crouch = true;
-				Crouch ();
+				Crouch();
 			}
-			
-			if (Input.GetKeyUp (KeyCode.C)) {
+
+			if(Input.GetKeyUp (KeyCode.C))
+			{
 				crouch = false;
-				Crouch ();
+				Crouch();
 			}
-			
-			
-			
-			
+		
+
+
+
 			//current
 			//input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 			//movable.AddForce(input*moveSpeed);
-			
+
 			//experimental
-			h = Input.GetAxis ("Horizontal");
-			v = Input.GetAxis ("Vertical");
-			
-			Vector3 moveDirection = StickToWorldspace (this.transform, gamecam.transform, ref directionSpeed, ref speed);
-			
+			h = Input.GetAxis("Horizontal");
+			v = Input.GetAxis("Vertical");
+
+			Vector3 moveDirection = StickToWorldspace(this.transform, gamecam.currentCamera.transform, ref directionSpeed, ref speed);
 			movable.AddForce (moveDirection * moveSpeed);
-			
-			
+
+			if(h != 0 || v != 0)
+			{
+				if(sprint == true)
+				{
+					HUDController.instance.StaminaMovementHandling(HUDController.instance.sprint);
+				}
+				else
+				{
+					HUDController.instance.StaminaMovementHandling(HUDController.instance.move);
+				}
+			}
+
+
 			//model rotation
-			if (h != 0f || v != 0f) {
-				Rotating (moveDirection);
+			if(h != 0f || v != 0f)
+			{
+				Rotating(moveDirection);
 			}
 		}
 
-		//if (rigidbody.velocity.magnitude < moveSpeed) 
+			//if (rigidbody.velocity.magnitude < moveSpeed) 
 		//{
 		//	rigidbody.AddForce (moveDirection * moveSpeed);
 		//}
@@ -162,14 +183,15 @@ public class TemporaryCharControl : MonoBehaviour {
 	void Jump()
 	{
 		movable.AddForce (0, jumpHeight, 0);
+		HUDController.instance.RegularStaminaConsumption(HUDController.instance.jump);
 	}
 
 	//check if on the ground for jump
 	public bool IsGrounded() 
 	{
 		RaycastHit hit;
-		if(Physics.Raycast(transform.position, Vector3.down, out hit, 1)) {
-			//Debug.Log("Hitting: " + hit.transform.gameObject.tag);
+		if(Physics.Raycast(transform.position, Vector3.down, out hit, 1f)) {
+			Debug.Log("Hitting: " + hit.transform.gameObject.tag);
 			Debug.DrawRay(transform.position, Vector3.down);
 			if(hit.transform.gameObject) 
 			{
@@ -190,7 +212,7 @@ public class TemporaryCharControl : MonoBehaviour {
 		{
 			ratboyCollider.height = 0.1f;
 			ratboyCollider.center = new Vector3(ratboyCollider.center.x, -0.03f, ratboyCollider.center.z);
-			moveSpeed = 6f;
+			moveSpeed = 8f;
 		}
 		else
 		{

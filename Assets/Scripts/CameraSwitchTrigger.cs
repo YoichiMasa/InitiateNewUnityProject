@@ -7,19 +7,16 @@ public class CameraSwitchTrigger : MonoBehaviour {
 	public Camera previousCamera;
 	
 	public CameraController switcher;
-	
-	void Start () {
-		
-	}
-	
-	void Update () {
-		
-	}
-	
+
 	void OnTriggerEnter(Collider other)
 	{
-		newCamera.camera.active = true;
-		previousCamera.camera.active = false;
-		switcher.currentCamera = newCamera;
+		if (other.tag == "Player") 
+		{
+			newCamera.camera.enabled = true;
+			newCamera.GetComponent<AudioListener>().enabled = true;
+			previousCamera.camera.enabled = false;
+			previousCamera.GetComponent<AudioListener>().enabled = false;
+			switcher.currentCamera = newCamera;
+		}
 	}
 }

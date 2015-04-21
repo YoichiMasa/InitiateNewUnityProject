@@ -27,12 +27,14 @@ public class PickUp: MonoBehaviour {
 		if(col.tag == "Player")
 		{
 			canPickUp = true;
+			HUDController.instance.MessageStay("Press [F] to Pick Up");
 		}
 	}
 
 	void OnTriggerExit(Collider col)
 	{
 		canPickUp = false;
+		HUDController.instance.MessageStay ("");
 	}
 
 	void Update()
@@ -43,6 +45,7 @@ public class PickUp: MonoBehaviour {
 			{
 				invent.addItem (item);
 				Destroy (gameObject);
+				AudioController.instance.PlayItemSound(2);
 			}
 		}
 	}
